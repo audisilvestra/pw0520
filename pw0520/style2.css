@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+	background-image: url(../img/sunset.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+    color: white;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+}
+
+.form{
+    margin-top: 8%;
+    display: block;
+    width: 40%;
+    height: 600%;
+    margin-left: 25%;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5%;
+    line-height: 30px;
+    font-family: arial;
+}
+
+input[type="text"],input[type="password"]{
+    width: 90%;
+}
