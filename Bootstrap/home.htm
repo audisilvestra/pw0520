@@ -12,11 +12,27 @@
 	<script type="text/javascript">
 		var app = angular.module("MyApp", ["ngRoute"]); 
 		app.config(function($routeProvider){
-			$routeProvider.when('/', {templateUrl:'main.htm'})
-			.when('/about', {templateUrl: 'about.htm'})
-			.when('/product', {templateUrl: 'about.htm'})
-			.when('/contact', {templateUrl: 'about.htm'});
+			$routeProvider.when('/', {templateUrl:'main.htm', controller: 'mainCtrl'})
+			.when('/about', {templateUrl: 'about.htm', controller: 'aboutCtrl'})
+			.when('/weather', {templateUrl: 'weather.htm', controller: 'weatherCtrl'})
+			.when('/contact', {templateUrl: 'contact.htm'});
 		});
+
+		app.controller('weatherCtrl',function($scope, $http){
+			var url = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=4de4dd041e499ca8a4f6692097befdae';
+
+			$http.get(url).then(function(response){
+				$scope.info = response.data;
+				var temp = response.data.main.temp;
+				$scope.cel = temp-273;
+			});
+
+			$scope.title="Weather of London";
+		});
+
+		app.controller('aboutCtrl',function($scope){
+			$scope.num= 10 * 5.2;
+		});		
 	</script>
 
 </head>
@@ -33,9 +49,9 @@
 			<div class="row menu">
 				<div class="col-12">
 					<a href="#/!">Home</a>
-					<a href="#/!about">About</a>
-					<a href="#/!product">Product</a>
-					<a href="#/!contact">Contact</a>
+					<a href="#!about">About</a>
+					<a href="#!weather">Weather</a>
+					<a href="#!contact">Contact</a>
 				</div>
 			</div>
 
