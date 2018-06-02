@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>16.11.0520</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('customersCtrl', function($scope, $http) {
+      $http.get("https://api.myjson.com/bins/1ecdlq")
+      .then(function (response) {$scope.names = response.data.data;});
+  });
+  </script>
+</head>
+
+<body>
+  <div class="row menu">
+        <div class="col-12 text-center">
+          <a href="#/!">Home</a>::
+          <a href="#!London">London</a>::
+          <a href="#!Paris">Paris</a>::
+          <a href="#!Data">Data</a>::
+        </div>
+      </div>
+  <div class="container-fluid">
+      <div class="row header">
+          <div class="col-12">
+            <h1 class="title">Data</h1>
+            <h4 class="title1">get data from api.myjson.com</h4>
+          </div>
+      </div>
+    </div>
+<div ng-app="myApp" ng-controller="customersCtrl"> 
+     <table>
+      <tr ng-repeat="x in names">
+        <td>{{ x.first_name }} {{ x.last_name }}</td>
+        <td>{{ x.address }}</td>
+        <td>{{ x.phone }}</td>
+        <td>{{ x.email }}</td>
+      </tr>
+     </table>
+  </div>
+</body>
+</html>
